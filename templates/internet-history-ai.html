@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>History of the Internet Infrastructure</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 2rem; color: #222; }
+        h1, h2, h3 { color: #0f172a; }
+        table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+        th, td { border: 1px solid #cbd5e1; padding: 0.75rem; text-align: left; }
+        th { background-color: #f1f5f9; }
+        a { color: #2563eb; }
+        footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #cbd5e1; font-size: 0.9rem; color: #64748b; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>History of the Internet Infrastructure</h1>
+        <p>The history of the Internet is the story of transforming isolated, specialized computing systems into a unified global communications platform through foundational technical decisions, open standards, and architectural layers designed to scale independently of upper-layer applications.</p>
+    </header>
+
+    <main>
+        <section>
+            <h2>The Foundation of Packet-Switched Infrastructure (1960s–1970s)</h2>
+            <article>
+                <p>The technical origins of the Internet lie in overcoming the limitations of traditional circuit-switched telecommunications. In October 1969, the U.S. Department of Defense's Advanced Research Projects Agency established the first host-to-host connection on ARPANET between Charley Kline at UCLA and Bill Duvall at the Stanford Research Institute (SRI) <cite>[Internet Society]</cite>. This became one of the first large-scale operational packet-switched networks, demonstrating the practical use of packet switching for communication between computers.</p>
+                <p>As early networks expanded, researchers began developing applications for inter-system communication. In 1971, Ray Tomlinson developed an experimental network email capability over ARPANET and introduced the @ symbol to route messages to specific host machines <cite>[Internet Hall of Fame]</cite>. While not an immediate global routing standard, it established the structural syntax for addressing users on remote hosts that would eventually become the universal messaging convention.</p>
+                <p>By the mid-1970s, multiple independent packet networks existed (such as ARPANET, PRNET, and SATNET), but each operated on incompatible communication protocols. In 1974, Vint Cerf and Robert Kahn published a seminal design for interconnecting independent packet-switched networks. Later that year, Vint Cerf, Yogen Dalal, and Carl Sunshine published RFC 675, an early specification of the Transmission Control Program <cite>[IETF RFC Editor (RFC 675)]</cite>.</p>
+            </article>
+        </section>
+
+        <section>
+            <h2>Standardizing the Architecture and Addressing (1980s)</h2>
+            <article>
+                <p>The transition from disparate experimental networks to a unified global network accelerated on January 1, 1983 ("Flag Day"), when ARPANET mandated the transition from the legacy Network Control Program (NCP) to the TCP/IP protocol suite (splitting host transport from internetwork packet routing via IP) <cite>[Internet Hall of Fame]</cite>. This required ARPANET hosts to transition from NCP to the TCP/IP protocol suite, laying an important operational foundation for the modern Internet.</p>
+                <p>As the physical footprint grew, managing host names manually via a single text file (HOSTS.TXT) became impossible. Between 1983 and 1984, Paul Mockapetris introduced the Domain Name System (DNS) <cite>[IETF RFC Editor (RFC 882)]</cite>. DNS replaced centralized naming files with a distributed, hierarchical database system that mapped human-readable hostnames to network addresses, allowing the naming system to scale far beyond the limitations of a single centralized host file.</p>
+            </article>
+        </section>
+
+        <section>
+            <h2>Privatization, Border Routing, and the Commercial Transition (1980s–1990s)</h2>
+            <article>
+                <p>Beginning in 1986, the National Science Foundation's NSFNET connected universities and supercomputing centers and became a major backbone of the growing U.S. Internet. To manage the complex inter-network routing between competing network operators and autonomous systems, the Border Gateway Protocol (BGP) was introduced in 1989 to coordinate exterior gateway routing <cite>[IETF RFC Editor (RFC 1105)]</cite>.</p>
+                <p>The commercialization of the Internet was a multi-year policy and structural shift rather than a sudden event. Beginning in the late 1980s, private network providers emerged, though official backbone usage remained restricted by NSFNET's Acceptable Use Policy (AUP), which banned non-research commercial traffic. To circumvent these restrictions, private operators formed independent interconnects, such as the Commercial Internet Exchange (CIX) in 1991.</p>
+                <p>Recognizing that private entities could supply network capacity without federal subsidies, Congress amended the NSF charter in 1992 to permit commercial traffic. The NSF then managed an architectural transition: funding regional networks to buy commercial bandwidth, establishing regional Network Access Points (NAPs) where private backbones could peer and exchange traffic, and deploying the Routing Arbiter system to manage inter-provider routing. This culminated in the decommissioning of the NSFNET backbone on April 30, 1995 <cite>[Internet Society]</cite>. Internet traffic increasingly moved across privately operated commercial backbones and interconnected networks, marking a major transition toward the commercially operated Internet.</p>
+            </article>
+        </section>
+
+        <section>
+            <h2>Internet Primary Sources &amp; Citations</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th scope="col">Milestone</th>
+                        <th scope="col">Historical Claim</th>
+                        <th scope="col">Source / Publisher</th>
+                        <th scope="col">URL</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1969</td>
+                        <td>First ARPANET Connection</td>
+                        <td>Internet Society</td>
+                        <td><a href="https://www.internetsociety.org/internet/history-internet/brief-history-internet/">Link</a></td>
+                    </tr>
+                    <tr>
+                        <td>1971</td>
+                        <td>First Network Email</td>
+                        <td>Internet Hall of Fame</td>
+                        <td><a href="https://www.internethalloffame.org/">Link</a></td>
+                    </tr>
+                    <tr>
+                        <td>1974</td>
+                        <td>TCP Specification (RFC 675)</td>
+                        <td>IETF RFC Editor</td>
+                        <td><a href="https://www.rfc-editor.org/rfc/rfc675.txt">Link</a></td>
+                    </tr>
+                    <tr>
+                        <td>1983</td>
+                        <td>Flag Day &amp; TCP/IP</td>
+                        <td>Internet Hall of Fame</td>
+                        <td><a href="https://www.internethalloffame.org/">Link</a></td>
+                    </tr>
+                    <tr>
+                        <td>1983–1984</td>
+                        <td>Domain Name System (DNS)</td>
+                        <td>IETF RFC Editor</td>
+                        <td><a href="https://www.rfc-editor.org/rfc/rfc882.txt">Link</a></td>
+                    </tr>
+                    <tr>
+                        <td>1989</td>
+                        <td>Border Gateway Protocol (BGP)</td>
+                        <td>IETF RFC Editor</td>
+                        <td><a href="https://www.rfc-editor.org/rfc/rfc1105.txt">Link</a></td>
+                    </tr>
+                    <tr>
+                        <td>1995</td>
+                        <td>NSFNET Decommissioning</td>
+                        <td>Internet Society</td>
+                        <td><a href="https://www.internetsociety.org/blog/2015/04/happy-birthday-backbone/">Link</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <footer>
+        <p>Web Programming — built with Flask and deployed on Render.</p>
+        <p>This website is created for educational purposes only, as part of the GIN446 - Web Programming course, School of Engineering, USEK. (Fall 2026-2027)</p>
+    </footer>
+
+</body>
+</html>
