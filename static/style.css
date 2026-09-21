@@ -138,7 +138,7 @@ ul, ol {
   width: 100%;
   max-width: var(--container-width);
   margin-inline: auto;
-  padding-inline: var(--space-md);
+  padding-inline: var(--space-sm);
 }
 
 /* =========================================================
@@ -148,7 +148,7 @@ ul, ol {
 header {
   background-color: var(--surface);
   border-bottom: 1px solid var(--border);
-  padding: var(--space-md) var(--space-md);
+  padding: var(--space-sm);
 }
 
 header,
@@ -165,6 +165,7 @@ header h1 {
   align-items: center;
   gap: 0.6em;
   margin-bottom: 0;
+  font-size: 1.4rem;
 }
 
 /* Small decorative accent beside the title — no extra HTML needed */
@@ -185,15 +186,16 @@ header p {
   margin-bottom: 0;
 }
 
-/* Navigation menu — Flexbox: row, evenly spaced, vertically centered,
-   wraps naturally on small screens (activates once <nav> exists) */
+/* Navigation menu — Flexbox: row, wraps naturally on small screens.
+   Mobile default: left-aligned, tighter gap. Widens to evenly-spaced
+   at the tablet breakpoint below. (Activates once <nav> exists.) */
 header nav {
   margin-top: var(--space-sm);
   display: flex;
   flex-flow: row wrap;
   align-items: center;
-  justify-content: space-between;
-  gap: var(--space-xs) var(--space-md);
+  justify-content: flex-start;
+  gap: var(--space-xs) var(--space-sm);
 }
 
 header nav a {
@@ -226,14 +228,14 @@ header nav a.active {
    ========================================================= */
 
 main {
-  padding-block: var(--space-xl);
+  padding-block: var(--space-lg);
 }
 
 main section {
   background-color: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-sharp);
-  padding: var(--space-lg);
+  padding: var(--space-md);
   margin-bottom: var(--space-lg);
 }
 
@@ -341,7 +343,7 @@ article {
 article h3 {
   position: relative;
   font-family: var(--font-heading);
-  font-size: 1.35rem;
+  font-size: 1.15rem;
   font-weight: 600;
   color: var(--text);
   margin-top: 0;
@@ -358,8 +360,18 @@ article h3::before {
   margin-bottom: var(--space-sm);
 }
 
-/* Description — supporting information, clearly quieter than the heading */
-article p:first-of-type {
+/* Body paragraphs.
+   Two article structures exist on this site:
+   - Milestone entries: <article> contains an <h3> (year + title),
+     then a description <p>, then a dedicated "Source: <a>" <p>.
+     Only the FIRST <p> here is the description — the source line
+     below gets its own citation styling.
+   - Prose entries (AI-generated pages): <article> has NO <h3>;
+     every <p> is ordinary body content with inline <cite> markers,
+     not a source line. ALL of these paragraphs get the same calm
+     reading treatment, matching the description style above. */
+article:has(h3) p:first-of-type,
+article:not(:has(h3)) p {
   font-size: 0.97rem;
   line-height: 1.85;
   color: var(--text-soft);
@@ -367,10 +379,15 @@ article p:first-of-type {
   max-width: 65ch;
 }
 
-/* Source line — archival metadata, lowest visual weight */
-article p:last-of-type {
+/* Source line — archival metadata, lowest visual weight.
+   Only applies inside milestone entries (article has an <h3>);
+   prose entries have no dedicated source paragraph, so this never
+   fires there and their last <p> keeps normal body styling above.
+   Mobile default: left-aligned so metadata + link wrap cleanly
+   on narrow screens. Centers vertically at the tablet breakpoint. */
+article:has(h3) p:last-of-type {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 0.5em;
   margin-top: var(--space-sm);
   margin-bottom: 0;
@@ -380,7 +397,7 @@ article p:last-of-type {
   color: var(--muted);
 }
 
-article p:last-of-type::before {
+article:has(h3) p:last-of-type::before {
   content: "";
   display: inline-block;
   width: 0.4em;
@@ -389,21 +406,20 @@ article p:last-of-type::before {
   flex-shrink: 0;
 }
 
-article p:last-of-type a {
+article:has(h3) p:last-of-type a {
   color: var(--accent);
   border-bottom: 1px solid transparent;
 }
 
-article p:last-of-type a:hover,
-article p:last-of-type a:focus-visible {
+article:has(h3) p:last-of-type a:hover,
+article:has(h3) p:last-of-type a:focus-visible {
   color: var(--accent-hover);
   border-bottom-color: currentColor;
 }
 
-/* If a description paragraph and the source paragraph are the same
-   element (only one <p> in the article), don't apply source styling
-   to it by mistake. */
-article p:only-of-type {
+/* If a milestone entry only has one <p> (description and source
+   merged), don't apply source styling to it by mistake. */
+article:has(h3) p:only-of-type {
   font-size: 0.97rem;
   line-height: 1.85;
   color: var(--text-soft);
@@ -412,9 +428,10 @@ article p:only-of-type {
   display: block;
 }
 
-article p:only-of-type::before {
+article:has(h3) p:only-of-type::before {
   content: none;
 }
+
 
 /* Inline citations, e.g. <cite>[Internet Society]</cite> within a paragraph */
 cite {
@@ -424,10 +441,11 @@ cite {
   letter-spacing: 0.02em;
 }
 
-/* Rhythm between entries — spacing + a subtle rule, not individual cards */
+/* Rhythm between entries — spacing + a subtle rule, not individual cards.
+   Tighter on mobile by default, opens up at the tablet breakpoint. */
 article + article {
-  margin-top: var(--space-xl);
-  padding-top: var(--space-xl);
+  margin-top: var(--space-lg);
+  padding-top: var(--space-lg);
   border-top: 1px solid var(--border);
 }
 
@@ -444,7 +462,11 @@ table {
   width: 100%;
   border-collapse: collapse;
   margin-top: var(--space-md);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
+  display: block;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  white-space: nowrap;
 }
 
 caption {
@@ -561,54 +583,61 @@ footer p:last-child {
 }
 
 /* =========================================================
-   Responsive
+   Responsive — mobile-first
+   Base styles above target small (phone) screens by default.
+   These media queries progressively enhance for larger screens.
    ========================================================= */
 
-@media (max-width: 768px) {
+/* ---- Tablet and up ---- */
+@media (min-width: 640px) {
   .container {
-    padding-inline: var(--space-sm);
+    padding-inline: var(--space-md);
   }
 
   header {
-    padding: var(--space-sm);
-  }
-
-  header h1 {
-    font-size: 1.4rem;
-  }
-
-  main {
-    padding-block: var(--space-lg);
-  }
-
-  main section {
     padding: var(--space-md);
   }
 
+  header h1 {
+    font-size: 1.75rem;
+  }
+
+  header nav {
+    justify-content: space-between;
+    gap: var(--space-xs) var(--space-md);
+  }
+
+  main {
+    padding-block: var(--space-xl);
+  }
+
+  main section {
+    padding: var(--space-lg);
+  }
+
   article h3 {
-    font-size: 1.15rem;
+    font-size: 1.35rem;
   }
 
   article + article {
-    margin-top: var(--space-lg);
-    padding-top: var(--space-lg);
+    margin-top: var(--space-xl);
+    padding-top: var(--space-xl);
+  }
+
+  article:has(h3) p:last-of-type {
+    align-items: center;
   }
 
   table {
-    display: block;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    white-space: nowrap;
+    font-size: 0.9rem;
   }
 }
 
-@media (max-width: 480px) {
-  header nav {
-    justify-content: flex-start;
-    gap: var(--space-xs) var(--space-sm);
-  }
-
-  article p:last-of-type {
-    align-items: flex-start;
+/* ---- Desktop and up ---- */
+@media (min-width: 1024px) {
+  table {
+    display: table;
+    overflow-x: visible;
+    white-space: normal;
   }
 }
