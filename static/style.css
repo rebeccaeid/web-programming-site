@@ -1,0 +1,571 @@
+/* =========================================================
+   Sophisticated Burgundy Archive — Flask Portfolio Stylesheet
+   Vanilla CSS. Theme variables live in :root / [data-theme].
+   Editorial, academic, slightly vintage — internet-history
+   archive feel rather than a SaaS/corporate look.
+   ========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap');
+
+:root {
+  /* ---- Color palette (dark, burgundy/wine) ---- */
+  --bg: #1C1517;
+  --surface: #261B1E;
+  --text: #F3EDE5;
+  --muted: #B9AAAC;
+  --accent: #B85C5C;
+  --accent-hover: #D47770;
+  --border: #493236;
+  --text-soft: #DCCFC7;
+  --surface-strong: #2E2024;
+
+  /* ---- Fonts ---- */
+  --font-heading: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  /* ---- Spacing scale (balanced) ---- */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2.5rem;
+  --space-xl: 4rem;
+
+  /* ---- Radii (mixed, kept small and restrained) ---- */
+  --radius-sharp: 2px;
+  --radius-soft: 6px;
+  --radius-pill: 999px;
+
+  /* ---- Layout ---- */
+  --container-width: 1000px;
+}
+
+/* Optional manual override if you later add a light/dark toggle */
+[data-theme="light"] {
+  --bg: #F4EDE4;
+  --surface: #FBF8F3;
+  --text: #2B2622;
+  --muted: #6B6259;
+  --accent: #A54F2E;
+  --accent-hover: #8C4025;
+  --border: #DCD0C2;
+  --text-soft: #4A423C;
+  --surface-strong: #E7DACB;
+}
+
+/* =========================================================
+   Reset / base
+   ========================================================= */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* =========================================================
+   Typography — clear, restrained hierarchy
+   ========================================================= */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--text);
+  margin: 0 0 var(--space-sm);
+}
+
+/* Portfolio title */
+h1 { font-size: 1.75rem; font-weight: 700; letter-spacing: -0.01em; }
+/* Section headings */
+h2 { font-size: 1.4rem; }
+/* Milestone / sub-section titles */
+h3 { font-size: 1.1rem; font-weight: 600; }
+
+p {
+  margin: 0 0 var(--space-sm);
+  color: var(--text);
+}
+
+a {
+  color: var(--text);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+a:hover,
+a:focus-visible {
+  color: var(--accent-hover);
+  border-bottom-color: currentColor;
+}
+
+a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: var(--radius-sharp);
+}
+
+ul, ol {
+  margin: 0 0 var(--space-sm);
+  padding-left: 1.25rem;
+}
+
+/* =========================================================
+   Layout container — narrow, editorial reading width
+   ========================================================= */
+
+.container {
+  width: 100%;
+  max-width: var(--container-width);
+  margin-inline: auto;
+  padding-inline: var(--space-md);
+}
+
+/* =========================================================
+   Header — compact editorial masthead
+   ========================================================= */
+
+header {
+  background-color: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: var(--space-md) var(--space-md);
+}
+
+header,
+header .container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  max-width: var(--container-width);
+  margin-inline: auto;
+}
+
+header h1 {
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+  margin-bottom: 0;
+}
+
+/* Small decorative accent beside the title — no extra HTML needed */
+header h1::before {
+  content: "";
+  display: inline-block;
+  width: 0.35em;
+  height: 1.1em;
+  background-color: var(--accent);
+  border-radius: var(--radius-sharp);
+  flex-shrink: 0;
+}
+
+header p {
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-style: italic;
+  margin-bottom: 0;
+}
+
+/* Navigation menu — light, understated (activates once <nav> exists) */
+header nav {
+  margin-top: var(--space-sm);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+}
+
+header nav a {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.85rem;
+  letter-spacing: 0.02em;
+  color: var(--text);
+  padding: 0.25rem 0.1rem;
+  border: none;
+  border-bottom: 1px solid transparent;
+  border-radius: var(--radius-sharp);
+  background: none;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+header nav a:hover,
+header nav a:focus-visible {
+  color: var(--accent-hover);
+  border-bottom-color: var(--accent-hover);
+}
+
+header nav a.active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+/* =========================================================
+   Main content
+   ========================================================= */
+
+main {
+  padding-block: var(--space-xl);
+}
+
+main section {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sharp);
+  padding: var(--space-lg);
+  margin-bottom: var(--space-lg);
+}
+
+main section:last-child {
+  margin-bottom: 0;
+}
+
+main section h2 {
+  color: var(--accent);
+  margin-bottom: var(--space-md);
+}
+
+main section p {
+  line-height: 1.75;
+}
+
+/* =========================================================
+   Weekly Work section — editorial list, not a default <ul>
+   ========================================================= */
+
+main section ul {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 0;
+}
+
+main section li {
+  padding: var(--space-sm) 0;
+  border-bottom: 1px solid var(--border);
+}
+
+main section li:last-child {
+  border-bottom: none;
+}
+
+main section li a {
+  display: inline-block;
+  font-weight: 500;
+  color: var(--text);
+  transition: color 0.15s ease, transform 0.15s ease;
+}
+
+main section li a:hover,
+main section li a:focus-visible {
+  color: var(--accent-hover);
+  transform: translateX(3px);
+  border-bottom-color: transparent;
+}
+
+/* =========================================================
+   Historical entries (article > h3, p, p, [cite])
+   CSS-only hierarchy — no HTML changes, no split text.
+   Each <article> is treated as one self-contained entry;
+   the FIRST <p> is read as the description, the LAST <p>
+   as the source line, per your existing markup pattern.
+   ========================================================= */
+
+article {
+  max-width: 68ch;
+}
+
+/* Entry heading (year + title together, e.g. "1969: First ARPANET Connection")
+   Treated as a single unit — never split. A short accent rule above it
+   marks the start of a new entry. */
+article h3 {
+  position: relative;
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-top: 0;
+  margin-bottom: var(--space-sm);
+  line-height: 1.3;
+}
+
+article h3::before {
+  content: "";
+  display: block;
+  width: 2.5rem;
+  height: 2px;
+  background-color: var(--accent);
+  margin-bottom: var(--space-sm);
+}
+
+/* Description — supporting information, clearly quieter than the heading */
+article p:first-of-type {
+  font-size: 0.97rem;
+  line-height: 1.85;
+  color: var(--text-soft);
+  margin-bottom: var(--space-sm);
+  max-width: 65ch;
+}
+
+/* Source line — archival metadata, lowest visual weight */
+article p:last-of-type {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  margin-top: var(--space-sm);
+  margin-bottom: 0;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+article p:last-of-type::before {
+  content: "";
+  display: inline-block;
+  width: 0.4em;
+  height: 0.4em;
+  background-color: var(--accent);
+  flex-shrink: 0;
+}
+
+article p:last-of-type a {
+  color: var(--accent);
+  border-bottom: 1px solid transparent;
+}
+
+article p:last-of-type a:hover,
+article p:last-of-type a:focus-visible {
+  color: var(--accent-hover);
+  border-bottom-color: currentColor;
+}
+
+/* If a description paragraph and the source paragraph are the same
+   element (only one <p> in the article), don't apply source styling
+   to it by mistake. */
+article p:only-of-type {
+  font-size: 0.97rem;
+  line-height: 1.85;
+  color: var(--text-soft);
+  text-transform: none;
+  letter-spacing: normal;
+  display: block;
+}
+
+article p:only-of-type::before {
+  content: none;
+}
+
+/* Inline citations, e.g. <cite>[Internet Society]</cite> within a paragraph */
+cite {
+  font-style: normal;
+  font-size: 0.8em;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+}
+
+/* Rhythm between entries — spacing + a subtle rule, not individual cards */
+article + article {
+  margin-top: var(--space-xl);
+  padding-top: var(--space-xl);
+  border-top: 1px solid var(--border);
+}
+
+/* Section titles introducing a group of entries */
+section > h2 {
+  margin-bottom: var(--space-lg);
+}
+
+/* =========================================================
+   Tables — Milestone / citation tables
+   ========================================================= */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: var(--space-md);
+  font-size: 0.9rem;
+}
+
+caption {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text);
+  text-align: left;
+  margin-bottom: var(--space-sm);
+  caption-side: top;
+}
+
+thead th {
+  background-color: var(--surface-strong);
+  color: var(--text);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.03em;
+  text-align: left;
+  padding: 0.75rem 1rem;
+  border-bottom: 2px solid var(--accent);
+}
+
+tbody td {
+  padding: 0.65rem 1rem;
+  color: var(--text-soft);
+  line-height: 1.6;
+  border-bottom: 1px solid var(--border);
+}
+
+tbody tr:nth-child(even) {
+  background-color: rgba(184, 92, 92, 0.045);
+}
+
+tbody tr:hover {
+  background-color: rgba(184, 92, 92, 0.08);
+}
+
+table a {
+  color: var(--accent);
+  border-bottom: 1px solid transparent;
+}
+
+table a:hover,
+table a:focus-visible {
+  color: var(--accent-hover);
+  border-bottom-color: currentColor;
+}
+
+/* =========================================================
+   Reusable elements for future pages
+   ========================================================= */
+
+.btn {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--bg);
+  background-color: var(--accent);
+  padding: 0.5rem 1.1rem;
+  border-radius: var(--radius-soft);
+  border: 1px solid var(--accent);
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.btn:hover,
+.btn:focus-visible {
+  background-color: var(--accent-hover);
+  border-color: var(--accent-hover);
+}
+
+.card {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sharp);
+  padding: var(--space-md);
+}
+
+.tag {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--accent);
+  background-color: transparent;
+  border: 1px solid var(--border);
+  padding: 0.15rem 0.6rem;
+  border-radius: var(--radius-pill);
+}
+
+/* =========================================================
+   Footer — quiet, intentional ending
+   ========================================================= */
+
+footer {
+  border-top: 1px solid var(--border);
+  padding: var(--space-lg) var(--space-md);
+  text-align: center;
+}
+
+footer p {
+  color: var(--muted);
+  font-size: 0.8rem;
+  max-width: var(--container-width);
+  margin-inline: auto;
+  margin-bottom: var(--space-xs);
+  line-height: 1.6;
+}
+
+footer p:last-child {
+  margin-bottom: 0;
+}
+
+/* =========================================================
+   Responsive
+   ========================================================= */
+
+@media (max-width: 768px) {
+  .container {
+    padding-inline: var(--space-sm);
+  }
+
+  header {
+    padding: var(--space-sm);
+  }
+
+  header h1 {
+    font-size: 1.4rem;
+  }
+
+  main {
+    padding-block: var(--space-lg);
+  }
+
+  main section {
+    padding: var(--space-md);
+  }
+
+  article h3 {
+    font-size: 1.15rem;
+  }
+
+  article + article {
+    margin-top: var(--space-lg);
+    padding-top: var(--space-lg);
+  }
+
+  table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 480px) {
+  header nav {
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  article p:last-of-type {
+    align-items: flex-start;
+  }
+}

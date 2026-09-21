@@ -12,8 +12,15 @@
     <header>
         <h1>Web Programming Portfolio — Rebecca Eid</h1>
         <p>A live site that grows one page or feature every week.</p>
+     <nav>
+    <a href="{{ url_for('home') }}">Home</a>
+    <a href="{{ url_for('internet_history') }}">Internet History</a>
+    <a href="{{ url_for('internet_history_ai') }}">Internet History (AI)</a>
+    <a href="{{ url_for('web_history') }}">Web History</a>
+    <a href="{{ url_for('web_history_ai') }}">Web History (AI)</a>
+   </nav>
     </header>
-    <main>
+    <main class="container">
         {% block content %}{% endblock %}
     </main>
 <footer>
