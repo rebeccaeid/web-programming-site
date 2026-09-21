@@ -255,30 +255,30 @@ main section p {
    a specific layout class)
    ========================================================= */
 
-main section ul {
+main section ul:not(.weekly-list) {
   list-style: none;
   padding-left: 0;
   margin-bottom: 0;
 }
 
-main section li {
+main section ul:not(.weekly-list) li {
   padding: var(--space-sm) 0;
   border-bottom: 1px solid var(--border);
 }
 
-main section li:last-child {
+main section ul:not(.weekly-list) li:last-child {
   border-bottom: none;
 }
 
-main section li a {
+main section ul:not(.weekly-list) li a {
   display: inline-block;
   font-weight: 500;
   color: var(--text);
   transition: color 0.15s ease, transform 0.15s ease;
 }
 
-main section li a:hover,
-main section li a:focus-visible {
+main section ul:not(.weekly-list) li a:hover,
+main section ul:not(.weekly-list) li a:focus-visible {
   color: var(--accent-hover);
   transform: translateX(3px);
   border-bottom-color: transparent;
@@ -295,7 +295,7 @@ main section li a:focus-visible {
   padding-left: 0;
   margin-bottom: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
   gap: var(--space-md);
 }
 
