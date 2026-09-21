@@ -1,23 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>History of the World Wide Web</title>
-</head>
-<body>
+{% extends "base.html" %}
 
-    <header>
-    <h1>History of the World Wide Web</h1>
-    <nav>
-        <ul>
-            <li><a href="/">Home</a></li>
-        </ul>
-    </nav>
-    <p>The World Wide Web (WWW) is an information space built on top of the physical infrastructure of the Internet[cite: 1]. While the Internet provides the underlying network of connected computers and packet-routing protocols, the World Wide Web provides a system of interlinked hypertext documents accessed via URLs, HTTP, and HTML[cite: 1].</p>
-</header>
+{% block title %}History of the World Wide Web{% endblock %}
 
-    <main>
+{% block content %}
         <section>
             <h2>Conceptual Origins and the Initial Invention (1989–1991)</h2>
             <article>
@@ -56,6 +41,23 @@
                 <p>These developments contributed to what became known as "Web 2.0," a broader shift toward interactive Web applications, user-generated content, social platforms, and greater user participation.</p>
             </article>
         </section>
+            <section>
+        <h2>Open Standards and the Mobile Web (2010s)</h2>
+        <article>
+            <p>In October 2014, the W3C published the HTML5 Recommendation, adding standardized support for features such as native audio, video, and canvas elements and reducing reliance on proprietary browser plugins <cite>[W3C HTML5 Recommendation]</cite>. During the 2010s, the rapid growth of smartphones and mobile browsing encouraged responsive Web design, while HTTPS and newer transport protocols such as HTTP/2 became increasingly important components of modern Web delivery <cite>[IETF RFC 7540]</cite>.</p>
+
+            <p>In December 2019, the W3C published the WebAssembly Core Specification as a Recommendation, providing a standardized, portable compilation target that allows high-performance code to run in Web browsers alongside JavaScript <cite>[W3C WebAssembly Recommendation]</cite>.</p>
+        </article>
+    </section>
+
+    <section>
+        <h2>Modern Web Application Architectures and AI Integration (2020s–Present)</h2>
+        <article>
+            <p>During the 2020s, Web application development increasingly incorporated technologies such as edge computing, server-side rendering, client-side hydration, progressive Web applications (PWAs), and component-based application architectures. These approaches support interactive applications that can distribute processing and content delivery across clients, servers, and edge networks.</p>
+
+            <p>Generative artificial intelligence has also become increasingly integrated into Web applications, including conversational interfaces, content-generation tools, coding assistants, search experiences, and other interactive services. These systems commonly combine browser-based interfaces with server-side or cloud-based AI models and APIs.</p>
+        </article>
+    </section>
 
         <section>
             <h2>World Wide Web Primary Sources &amp; Citations</h2>
@@ -135,15 +137,32 @@
                         <td>W3C Standards</td>
                         <td><a href="https://www.w3.org/standards/">Link</a></td>
                     </tr>
+                    <tr>
+                        <td>2014</td>
+                        <td>HTML5 Recommendation</td>
+                        <td>W3C Technical Reports</td>
+                        <td><a href="https://www.w3.org/TR/html5/" target="_blank" rel="noopener noreferrer">Link</a></td>
+                    </tr>
+                    <tr>
+                       <td>2015</td>
+                       <td>HTTP/2 Standardized (RFC 7540)</td>
+                       <td>IETF RFC Editor</td>
+                       <td><a href="https://www.rfc-editor.org/rfc/rfc7540" target="_blank" rel="noopener noreferrer">Link</a></td>
+                    </tr>
+                    <tr>
+                       <td>2019</td>
+                       <td>WebAssembly Core Specification</td>
+                       <td>W3C Technical Reports</td>
+                       <td><a href="https://www.w3.org/TR/wasm-core-1/" target="_blank" rel="noopener noreferrer">Link</a></td>
+                   </tr>
+                   <tr>
+                       <td>2020s–Present</td>
+                       <td>Modern Web Application Architectures</td>
+                       <td>W3C Web Standards</td>
+                       <td><a href="https://www.w3.org/standards/" target="_blank" rel="noopener noreferrer">Link</a></td>
+                  </tr>
+
                 </tbody>
             </table>
         </section>
-    </main>
-
-    <footer>
-        <p>Web Programming — built with Flask and deployed on Render.</p>
-        <p>This website is created for educational purposes only, as part of the GIN446 - Web Programming course, School of Engineering, USEK. (Fall 2026-2027)</p>
-    </footer>
-
-</body>
-</html>
+ {% endblock %}

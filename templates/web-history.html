@@ -1,23 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>History of the World Wide Web</title>
-</head>
-<body>
+{% extends "base.html" %}
 
-    <header>
-        <h1>History of the World Wide Web</h1>
-        <nav>
-            <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="#introduction">Introduction</a></li>
-                <li><a href="#milestones">Milestones</a></li>
-            </ul>
-        </nav>
-    </header>
+{% block title %}History of the World Wide Web{% endblock %}
 
-    <main>
+{% block content %}
         <section id="introduction">
             <h2>Introduction</h2>
             <p>The World Wide Web (WWW) is an information space built on top of the physical infrastructure of the Internet. While the Internet provides the underlying network of connected computers and packet-routing protocols, the World Wide Web provides a system of interlinked hypertext documents accessed via URLs, HTTP, and HTML.</p>
@@ -74,6 +59,7 @@
                 <p>Source: <a href="https://www.thesslstore.com/blog/ssl-and-tls-versions-celebrating-30-years-of-history/" target="_blank">SSL Store (SSL/TLS History)</a></p>
             </article>
 
+        
             <article>
                 <h3>1996: BackRub / Stanford Research</h3>
                 <p>Larry Page and Sergey Brin, then Stanford researchers, began developing BackRub, a search project analyzing the web's link graph to measure page importance.</p>
@@ -91,13 +77,29 @@
                 <p>Refinements like AJAX allowed browsers to exchange data with servers in the background, fueling the shift toward interactive Web applications and user-generated content known as "Web 2.0."</p>
                 <p>Source: <a href="https://www.w3.org/standards/" target="_blank">W3C Standards</a></p>
             </article>
+
+            <article>
+                <h3>2014: Open Standards and HTML5 Recommendation</h3>
+                <p>The W3C published the HTML5 Recommendation specification, adding native multimedia elements and reducing dependence on proprietary plugins.</p>
+                <p>Source: <a href="https://www.w3.org/TR/html5/" target="_blank">W3C Technical Reports</a></p>
+            </article>
+                        <article>
+                <h3>2015: HTTP/2 Protocol Standardized</h3>
+                <p>The IETF standardized HTTP/2 (RFC 7540), introducing multiplexed connections and header compression to improve the efficiency of HTTP communication.</p>
+                <p>Source: <a href="https://www.rfc-editor.org/rfc/rfc7540" target="_blank">IETF RFC Editor</a></p>
+            </article>
+
+            <article>
+                <h3>2019: WebAssembly Core Specification</h3>
+                <p>The W3C published the WebAssembly Core Specification as a Recommendation, establishing a safe, portable, low-level code format designed for efficient execution in Web browsers and other environments.</p>
+                <p>Source: <a href="https://www.w3.org/TR/wasm-core-1/" target="_blank">W3C Technical Reports</a></p>
+            </article>
+
+            <article>
+                <h3>2020s–Present: Modern Web Application Architectures</h3>
+                <p>Web development has increasingly incorporated technologies such as edge computing, server-side rendering, client-side hydration, progressive web applications (PWAs), and component-based application architectures. Web applications have also increasingly incorporated AI-powered features such as conversational interfaces, content generation, and intelligent search.</p>
+                <p>Source: <a href="https://www.w3.org/standards/" target="_blank">W3C Web Standards</a></p>
+            </article>
+
         </section>
-    </main>
-
-    <footer>
-        <p>Web Programming — built with Flask and deployed on Render.</p>
-        <p>This website is created for educational purposes only, as part of the GIN446 - Web Programming course, School of Engineering, USEK. (Fall 2026-2027)</p>
-    </footer>
-
-</body>
-</html>
+{% endblock %}   

@@ -1,23 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>History of the Internet</title>
-</head>
-<body>
+{% extends "base.html" %}
 
-    <header>
-        <h1>History of the Internet</h1>
-        <nav>
-            <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="#introduction">Introduction</a></li>
-                <li><a href="#milestones">Milestones</a></li>
-            </ul>
-        </nav>
-    </header>
+{% block title %}History of the Internet Infrastructure{% endblock %}
 
-    <main>
+{% block content %}
+
+    
         <section id="introduction">
             <h2>Introduction</h2>
             <p>The history of the Internet is the story of transforming isolated, specialized computing systems into a unified global communications platform through foundational technical decisions, open standards, and architectural layers designed to scale independently of upper-layer applications.</p>
@@ -67,13 +54,36 @@
                 <p>The NSFNET backbone was officially retired, completing the structural transition of internet routing to private commercial backbones.</p>
                 <p>Source: <a href="https://www.internetsociety.org/blog/2015/04/happy-birthday-backbone/" target="_blank">Internet Society</a></p>
             </article>
-        </section>
-    </main>
+        
+        <article>
+            <h3>1997: IEEE 802.11 Wireless LAN Standard</h3>
+            <p>The IEEE published the original 802.11 standard, establishing an international standard for wireless local area networking.</p>
+            <p>Source: <a href="https://standards.ieee.org/standard/802_11-1997.html" target="_blank">IEEE Standards Association</a></p>
+        </article>
 
-    <footer>
-        <p>Web Programming — built with Flask and deployed on Render.</p>
-        <p>This website is created for educational purposes only, as part of the GIN446 - Web Programming course, School of Engineering, USEK. (Fall 2026-2027)</p>
-    </footer>
+        <article>
+            <h3>1998: IPv6 Specification (RFC 2460)</h3>
+            <p>The IETF published RFC 2460, defining IPv6 with a 128-bit address space to address the limitations of IPv4's 32-bit address space.</p>
+            <p>Source: <a href="https://www.rfc-editor.org/rfc/rfc2460.txt" target="_blank">IETF RFC Editor</a></p>
+        </article>
 
-</body>
-</html>
+        <article>
+            <h3>2011: IANA IPv4 Pool Depletion</h3>
+            <p>The central free pool of unallocated IPv4 address blocks managed by IANA was fully depleted, leaving the Regional Internet Registries to allocate their remaining address resources.</p>
+            <p>Source: <a href="https://www.nro.net/ipv4-free-pool-depleted/" target="_blank">Number Resource Organization</a></p>
+        </article>
+
+        <article>
+            <h3>2016: IANA Stewardship Transition</h3>
+            <p>On October 1, 2016, the U.S. government's contract with ICANN for performing the IANA functions expired, completing the IANA stewardship transition to the global multistakeholder Internet community.</p>
+            <p>Source: <a href="https://www.icann.org/stewardship-accountability" target="_blank">ICANN</a></p>
+        </article>
+
+        <article>
+            <h3>2026: IPv6 Global Adoption Milestone</h3>
+            <p>In April 2026, Google's global measurements showed that 50% of users accessing Google services were connecting over IPv6, marking a significant milestone in IPv6 adoption.</p>
+            <p>Source: <a href="https://blog.apnic.net/2026/04/28/google-hits-50-ipv6/" target="_blank">APNIC Blog</a></p>
+        </article>
+
+    </section>
+{% endblock %}

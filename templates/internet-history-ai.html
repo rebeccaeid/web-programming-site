@@ -1,23 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>History of the Internet Infrastructure</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block title %}History of the Internet Infrastructure{% endblock %}
+{% block content %}
 
-    <header>
-    <h1>History of the Internet Infrastructure</h1>
-    <nav>
-        <ul>
-            <li><a href="/">Home</a></li>
-        </ul>
-    </nav>
-    <p>The history of the Internet is the story of transforming isolated, specialized computing systems into a unified global communications platform through foundational technical decisions, open standards, and architectural layers designed to scale independently of upper-layer applications[cite: 1].</p>
-</header>
-
-    <main>
+        <section>
+           <h1>History of the Internet Infrastructure</h1>
+           <p>The history of the Internet is the story of transforming isolated, specialized computing systems into a unified global communications platform through foundational technical decisions, open standards, and architectural layers designed to scale independently of upper-layer applications.</p>
+        </section> 
         <section>
             <h2>The Foundation of Packet-Switched Infrastructure (1960s–1970s)</h2>
             <article>
@@ -43,6 +31,24 @@
                 <p>Recognizing that private entities could supply network capacity without federal subsidies, Congress amended the NSF charter in 1992 to permit commercial traffic. The NSF then managed an architectural transition: funding regional networks to buy commercial bandwidth, establishing regional Network Access Points (NAPs) where private backbones could peer and exchange traffic, and deploying the Routing Arbiter system to manage inter-provider routing. This culminated in the decommissioning of the NSFNET backbone on April 30, 1995 <cite>[Internet Society]</cite>. Internet traffic increasingly moved across privately operated commercial backbones and interconnected networks, marking a major transition toward the commercially operated Internet.</p>
             </article>
         </section>
+        
+
+    <section>
+        <h2>Wireless Access and the Next-Generation Addressing Standard (1997–1998)</h2>
+        <article>
+            <p>In June 1997, the IEEE approved 802.11, the first standard for wireless local area networking <cite>[IEEE Standards Association]</cite>. This standardized wireless local area networking, allowing devices to communicate with local networks without requiring a physical wired connection.</p>
+            <p>Concurrently, to address the eventual exhaustion of IPv4's 32-bit address space, the IETF published RFC 2460 in December 1998, specifying Internet Protocol version 6 (IPv6) with a 128-bit address space <cite>[IETF RFC Editor (RFC 2460)]</cite>.</p>
+        </article>
+    </section>
+
+    <section>
+        <h2>IPv4 Exhaustion, Stewardship Transition, and IPv6 Adoption (2011–Present)</h2>
+        <article>
+            <p>On February 3, 2011, the Internet Assigned Numbers Authority (IANA) allocated its final remaining IPv4 address blocks to the Regional Internet Registries, fully depleting the central free pool and increasing the urgency of IPv6 deployment <cite>[Number Resource Organization]</cite>.</p>
+            <p>On October 1, 2016, the U.S. government's contract with ICANN for performing the IANA functions expired, completing the IANA stewardship transition. Responsibility for the coordination of Internet unique identifiers continued under arrangements involving ICANN, its PTI affiliate, and the global multistakeholder Internet community <cite>[ICANN]</cite>.</p>
+            <p>In April 2026, Google's global IPv6 measurement reached 50%, meaning that approximately half of users accessing Google services in its measurements were connecting over IPv6. This represents a significant milestone in IPv6 adoption, although Google's measurement should not be interpreted as meaning that exactly 50% of all global Internet traffic or devices use IPv6 <cite>[APNIC Blog]</cite>.</p>
+        </article>
+    </section>
 
         <section>
             <h2>Internet Primary Sources &amp; Citations</h2>
@@ -98,15 +104,37 @@
                         <td>Internet Society</td>
                         <td><a href="https://www.internetsociety.org/blog/2015/04/happy-birthday-backbone/">Link</a></td>
                     </tr>
+                    <tr>
+                    <td>1997</td>
+                    <td>IEEE 802.11 Wireless LAN Standard</td>
+                    <td>IEEE Standards Association</td>
+                    <td><a href="https://standards.ieee.org/standard/802_11-1997.html" target="_blank">Link</a></td>
+                </tr>
+                <tr>
+                    <td>1998</td>
+                    <td>IPv6 Specification (RFC 2460)</td>
+                    <td>IETF RFC Editor</td>
+                    <td><a href="https://www.rfc-editor.org/rfc/rfc2460.txt" target="_blank">Link</a></td>
+                </tr>
+                <tr>
+                    <td>2011</td>
+                    <td>IANA Free Pool of IPv4 Addresses Depleted</td>
+                    <td>Number Resource Organization</td>
+                    <td><a href="https://www.nro.net/ipv4-free-pool-depleted/" target="_blank">Link</a></td>
+                </tr>
+                <tr>
+                    <td>2016</td>
+                    <td>IANA Stewardship Transition Completed</td>
+                    <td>ICANN</td>
+                    <td><a href="https://www.icann.org/stewardship-accountability" target="_blank">Link</a></td>
+                </tr>
+                <tr>
+                    <td>2026</td>
+                    <td>Google's IPv6 Measurement Reaches 50%</td>
+                    <td>APNIC Blog</td>
+                    <td><a href="https://blog.apnic.net/2026/04/28/google-hits-50-ipv6/" target="_blank">Link</a></td>
+                </tr>
                 </tbody>
             </table>
         </section>
-    </main>
-
-    <footer>
-        <p>Web Programming — built with Flask and deployed on Render.</p>
-        <p>This website is created for educational purposes only, as part of the GIN446 - Web Programming course, School of Engineering, USEK. (Fall 2026-2027)</p>
-    </footer>
-
-</body>
-</html>
+ {% endblock %}   
