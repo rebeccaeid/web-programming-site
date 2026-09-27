@@ -432,7 +432,6 @@ article:has(h3) p:only-of-type::before {
   content: none;
 }
 
-
 /* Inline citations, e.g. <cite>[Internet Society]</cite> within a paragraph */
 cite {
   font-style: normal;
@@ -641,3 +640,4 @@ footer p:last-child {
     white-space: normal;
   }
 }
+
