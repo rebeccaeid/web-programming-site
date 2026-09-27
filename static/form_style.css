@@ -50,7 +50,7 @@ label {
    Subtle Required Field Asterisk Indicator (*)
    ========================================================= */
 
-/* 1. Labels followed by a required control in the same container (handles <br> in between) */
+/* 1. Labels preceding a required input, select, or textarea (handles <br> in between) */
 label:has(~ input[required]),
 label:has(~ select[required]),
 label:has(~ textarea[required]) {
@@ -65,9 +65,15 @@ label:has(~ textarea[required])::after {
   font-weight: bold;
 }
 
-/* 2. Fieldset legends for required radio/checkbox groups & confirmation label */
-fieldset:has(input[required]) > legend::after,
-p:has(input[type="checkbox"][required]) > label::after {
+/* 2. Direct-child legend for required radio button group fieldsets */
+fieldset:has(> input[type="radio"][required]) > legend::after {
+  content: " *";
+  color: var(--accent);
+  font-weight: bold;
+}
+
+/* 3. Single required inline checkboxes (e.g. Confirmation checkbox) */
+input[type="checkbox"][required] + label::after {
   content: " *";
   color: var(--accent);
   font-weight: bold;
