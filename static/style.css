@@ -95,11 +95,22 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Portfolio title */
-h1 { font-size: 1.75rem; font-weight: 700; letter-spacing: -0.01em; }
+h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
 /* Section headings */
-h2 { font-size: 1.4rem; }
+h2 {
+  font-size: 1.4rem;
+}
+
 /* Milestone / sub-section titles */
-h3 { font-size: 1.1rem; font-weight: 600; }
+h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
 
 p {
   margin: 0 0 var(--space-sm);
@@ -125,7 +136,8 @@ a:focus-visible {
   border-radius: var(--radius-sharp);
 }
 
-ul, ol {
+ul,
+ol {
   margin: 0 0 var(--space-sm);
   padding-left: 1.25rem;
 }
@@ -189,6 +201,7 @@ header p {
 /* Navigation menu — Flexbox: row, wraps naturally on small screens.
    Mobile default: left-aligned, tighter gap. Widens to evenly-spaced
    at the tablet breakpoint below. (Activates once <nav> exists.) */
+
 header nav {
   margin-top: var(--space-sm);
   display: flex;
@@ -287,9 +300,8 @@ main section ul:not(.weekly-list) li a:focus-visible {
 }
 
 /* =========================================================
-   Weekly Work gallery (.weekly-list) — CSS Grid
-   Responsive gallery: as many columns as fit, each at least
-   240px wide, growing evenly to fill the row.
+   Weekly Work gallery (.weekly-list)
+   Now displayed vertically — one box per row.
    ========================================================= */
 
 .weekly-list {
@@ -297,7 +309,7 @@ main section ul:not(.weekly-list) li a:focus-visible {
   padding-left: 0;
   margin-bottom: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+  grid-template-columns: 1fr;
   gap: var(--space-md);
 }
 
@@ -340,6 +352,7 @@ article {
 /* Entry heading (year + title together, e.g. "1969: First ARPANET Connection")
    Treated as a single unit — never split. A short accent rule above it
    marks the start of a new entry. */
+
 article h3 {
   position: relative;
   font-family: var(--font-heading);
@@ -360,16 +373,8 @@ article h3::before {
   margin-bottom: var(--space-sm);
 }
 
-/* Body paragraphs.
-   Two article structures exist on this site:
-   - Milestone entries: <article> contains an <h3> (year + title),
-     then a description <p>, then a dedicated "Source: <a>" <p>.
-     Only the FIRST <p> here is the description — the source line
-     below gets its own citation styling.
-   - Prose entries (AI-generated pages): <article> has NO <h3>;
-     every <p> is ordinary body content with inline <cite> markers,
-     not a source line. ALL of these paragraphs get the same calm
-     reading treatment, matching the description style above. */
+/* Body paragraphs */
+
 article:has(h3) p:first-of-type,
 article:not(:has(h3)) p {
   font-size: 0.97rem;
@@ -379,12 +384,8 @@ article:not(:has(h3)) p {
   max-width: 65ch;
 }
 
-/* Source line — archival metadata, lowest visual weight.
-   Only applies inside milestone entries (article has an <h3>);
-   prose entries have no dedicated source paragraph, so this never
-   fires there and their last <p> keeps normal body styling above.
-   Mobile default: left-aligned so metadata + link wrap cleanly
-   on narrow screens. Centers vertically at the tablet breakpoint. */
+/* Source line */
+
 article:has(h3) p:last-of-type {
   display: flex;
   align-items: flex-start;
@@ -417,8 +418,8 @@ article:has(h3) p:last-of-type a:focus-visible {
   border-bottom-color: currentColor;
 }
 
-/* If a milestone entry only has one <p> (description and source
-   merged), don't apply source styling to it by mistake. */
+/* If a milestone entry only has one <p> */
+
 article:has(h3) p:only-of-type {
   font-size: 0.97rem;
   line-height: 1.85;
@@ -432,7 +433,8 @@ article:has(h3) p:only-of-type::before {
   content: none;
 }
 
-/* Inline citations, e.g. <cite>[Internet Society]</cite> within a paragraph */
+/* Inline citations */
+
 cite {
   font-style: normal;
   font-size: 0.8em;
@@ -440,8 +442,8 @@ cite {
   letter-spacing: 0.02em;
 }
 
-/* Rhythm between entries — spacing + a subtle rule, not individual cards.
-   Tighter on mobile by default, opens up at the tablet breakpoint. */
+/* Rhythm between entries */
+
 article + article {
   margin-top: var(--space-lg);
   padding-top: var(--space-lg);
@@ -449,6 +451,7 @@ article + article {
 }
 
 /* Section titles introducing a group of entries */
+
 section > h2 {
   margin-bottom: var(--space-lg);
 }
@@ -588,6 +591,7 @@ footer p:last-child {
    ========================================================= */
 
 /* ---- Tablet and up ---- */
+
 @media (min-width: 640px) {
   .container {
     padding-inline: var(--space-md);
@@ -633,6 +637,7 @@ footer p:last-child {
 }
 
 /* ---- Desktop and up ---- */
+
 @media (min-width: 1024px) {
   table {
     display: table;
@@ -640,4 +645,3 @@ footer p:last-child {
     white-space: normal;
   }
 }
-
