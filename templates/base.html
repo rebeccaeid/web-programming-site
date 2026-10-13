@@ -24,7 +24,8 @@
     {% endblock %}
 </header>
     <main class="container">
-        {% block content %}{% endblock %}
+    <h2>{% block page_title %}{% endblock %}</h2>
+    {% block content %}{% endblock %}
     </main>
 <footer>
 <p>Web Programming — built with Flask and deployed on Render.</p>
