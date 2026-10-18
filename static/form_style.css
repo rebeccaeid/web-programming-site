@@ -276,3 +276,18 @@ button[type="reset"]:focus-visible {
   outline: 2px solid var(--muted);
   outline-offset: 2px;
 }
+
+/* Hide the review panel by default */
+.panel {
+    display: none;
+}
+
+/* When JavaScript adds the 'open' class, show the panel and hide the form */
+.panel.open {
+    display: block;
+}
+
+.hidden {
+    display: none;
+}
+

@@ -56,6 +56,7 @@ def home():
         {"week": 3, "title": "Styling with CSS", "url": "/#week3"},
         {"week": 4, "title": "Engineering Student Profile", "url": "/submit-profile"},
         {"week": 5, "title": "JavaScript app", "url": "/quiz"},
+        {"week": 6, "title": "Engineering Student Profile- W6", "url": "/submit-profile-W6"}
     ]
     return render_template("index.html", weekly_work=weekly_work)
 
@@ -88,7 +89,7 @@ def submit_profile():
             (templates/profile.html, which extends your base.html).
     """
     if request.method == "POST":
-        data = request.form.to_dict()                   # all single-value fields
+        data = request.form.to_dict()                       # all single-value fields
         skills = request.form.getlist("skills")         # checkboxes -> list
         software = request.form.getlist("software")     # multiple <select> -> list
         return render_template(
@@ -98,9 +99,29 @@ def submit_profile():
     # First visit (GET): just show the empty form.
     return render_template("profile-form.html")
 
+
 @app.route("/quiz", methods=["GET", "POST"])
 def quiz():
     return render_template("quiz.html")
+
+
+@app.route("/submit-profile-W6", methods=["GET", "POST"])
+def submit_profile_w6():  # Fixed function name here to prevent collision
+    """
+    GET  -> show the profile form (you build templates/profile_form.html).
+    POST -> read the submitted fields and show the profile page
+            (templates/profile.html, which extends your base.html).
+    """
+    if request.method == "POST":
+        data = request.form.to_dict()                       # all single-value fields
+        skills = request.form.getlist("skills")         # checkboxes -> list
+        software = request.form.getlist("software")     # multiple <select> -> list
+        return render_template(
+            "profile.html", data=data, skills=skills, software=software
+        )
+
+    # First visit (GET): just show the empty form.
+    return render_template("profile-review.html")    
 
 
 if __name__ == "__main__":
