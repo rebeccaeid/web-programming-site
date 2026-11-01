@@ -1,0 +1,294 @@
+{% extends "base.html" %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='form_style.css') }}"/>
+<style>
+  .error { color: #c0392b; font-size: 0.9em; margin-left: 8px; }
+</style>
+{% endblock %}
+
+{% block content %}
+{% macro err(f) %}
+{% if errors.get(f) %}
+<span class="error">{{ errors[f] }}</span>
+{% endif %}
+{% endmacro %}
+
+<h2>Senior Engineering Student - Academic Profile</h2>
+<p>Complete this form to provide information about your academic background, technical skills, internship experience, and Final Year Project preferences.</p>
+
+<form method="post" action="{{ url_for('profile_validated') }}" novalidate>
+
+  <input type="hidden" name="form_version" value="2026-2027">
+
+  <fieldset>
+    <legend>1. Personal Information</legend>
+
+    <p>
+      <label for="student_id">Student ID:</label><br>
+      <input type="text" id="student_id" name="student_id" placeholder="202511223"
+             value="{{ data.get('student_id', '') }}">
+      {{ err('student_id') }}
+    </p>
+
+    <p>
+      <label for="fullname">Full Name:</label><br>
+      <input type="text" id="fullname" name="fullname" placeholder="First name and last name"
+             value="{{ data.get('fullname', '') }}">
+      {{ err('fullname') }}
+    </p>
+
+    <p>
+      <label for="email">USEK Email:</label><br>
+      <input type="email" id="email" name="email" placeholder="student@net.usek.edu.lb"
+             value="{{ data.get('email', '') }}">
+      {{ err('email') }}
+    </p>
+
+    <p>
+      <label for="phone">Mobile Number:</label><br>
+      <input type="tel" id="phone" name="phone" placeholder="+961 70 123456"
+             value="{{ data.get('phone', '') }}">
+      {{ err('phone') }}
+    </p>
+
+    <p>
+      <label for="birthdate">Date of Birth:</label><br>
+      <input type="date" id="birthdate" name="birthdate"
+             value="{{ data.get('birthdate', '') }}">
+      {{ err('birthdate') }}
+    </p>
+
+    <p>
+      <label for="portfolio">GitHub:</label><br>
+      <input type="url" id="portfolio" name="portfolio" placeholder="https://github.com/username"
+             value="{{ data.get('portfolio', '') }}">
+      {{ err('portfolio') }}
+    </p>
+
+    <p>
+      <label for="gin446">GIN446 website:</label><br>
+      <input type="url" id="gin446" name="gin446" placeholder="Your RENDER website link"
+             value="{{ data.get('gin446', '') }}">
+      {{ err('gin446') }}
+    </p>
+  </fieldset>
+
+  <fieldset>
+    <legend>2. Academic Information</legend>
+
+    <p>
+      <label for="major">Engineering Major:</label><br>
+      <select id="major" name="major">
+        <option value="">-- Select your major --</option>
+        <option value="Computer Engineering" {% if data.get('major') == 'Computer Engineering' %}selected{% endif %}>Computer Engineering</option>
+        <option value="Electrical Engineering" {% if data.get('major') == 'Electrical Engineering' %}selected{% endif %}>Electrical Engineering</option>
+        <option value="Biomedical Engineering" {% if data.get('major') == 'Biomedical Engineering' %}selected{% endif %}>Biomedical Engineering</option>
+        <option value="Telecommunications Engineering" {% if data.get('major') == 'Telecommunications Engineering' %}selected{% endif %}>Telecommunications Engineering</option>
+        <option value="Mechanical Engineering" {% if data.get('major') == 'Mechanical Engineering' %}selected{% endif %}>Mechanical Engineering</option>
+        <option value="Civil Engineering" {% if data.get('major') == 'Civil Engineering' %}selected{% endif %}>Civil Engineering</option>
+        <option value="Chemical Engineering" {% if data.get('major') == 'Chemical Engineering' %}selected{% endif %}>Chemical Engineering</option>
+      </select>
+      {{ err('major') }}
+    </p>
+
+    <p>
+      <label for="gpa">Current GPA / 100:</label><br>
+      <input type="number" id="gpa" name="gpa" placeholder="87.2" min="40" max="100" step="0.01"
+             value="{{ data.get('gpa', '') }}">
+      {{ err('gpa') }}
+    </p>
+
+    <p>
+      <label for="credits">Credits Completed:</label><br>
+      <input type="number" id="credits" name="credits" min="0" max="196"
+             value="{{ data.get('credits', '') }}">
+      {{ err('credits') }}
+    </p>
+
+    <fieldset>
+      <legend>Expected Graduation</legend>
+      <input type="radio" id="grad_spring" name="graduation" value="Spring" {% if data.get('graduation') == 'Spring' %}checked{% endif %}>
+      <label for="grad_spring">Spring</label>
+
+      <input type="radio" id="grad_summer" name="graduation" value="Summer" {% if data.get('graduation') == 'Summer' %}checked{% endif %}>
+      <label for="grad_summer">Summer</label>
+
+      <input type="radio" id="grad_fall" name="graduation" value="Fall" {% if data.get('graduation') == 'Fall' %}checked{% endif %}>
+      <label for="grad_fall">Fall</label>
+      {{ err('graduation') }}
+    </fieldset>
+
+    <p>
+      <label for="graduation_month">Expected Graduation Month &amp; Year:</label><br>
+      <input type="month" id="graduation_month" name="graduation_month"
+             value="{{ data.get('graduation_month', '') }}">
+      {{ err('graduation_month') }}
+    </p>
+
+    <fieldset>
+      <legend>Have you completed an engineering internship?</legend>
+      <input type="radio" id="internship_yes" name="internship_completed" value="Yes" {% if data.get('internship_completed') == 'Yes' %}checked{% endif %}>
+      <label for="internship_yes">Yes</label>
+
+      <input type="radio" id="internship_no" name="internship_completed" value="No" {% if data.get('internship_completed') == 'No' %}checked{% endif %}>
+      <label for="internship_no">No</label>
+      {{ err('internship_completed') }}
+    </fieldset>
+  </fieldset>
+
+  <fieldset>
+    <legend>3. Technical Background</legend>
+
+    <fieldset>
+      <legend>Select all areas in which you have experience:</legend>
+
+      <input type="checkbox" id="skill_programming" name="skills" value="Programming" {% if 'Programming' in sel_skills %}checked{% endif %}>
+      <label for="skill_programming">Programming</label><br>
+
+      <input type="checkbox" id="skill_embedded" name="skills" value="Embedded Systems" {% if 'Embedded Systems' in sel_skills %}checked{% endif %}>
+      <label for="skill_embedded">Embedded Systems</label><br>
+
+      <input type="checkbox" id="skill_electronics" name="skills" value="Electronics" {% if 'Electronics' in sel_skills %}checked{% endif %}>
+      <label for="skill_electronics">Electronics</label><br>
+
+      <input type="checkbox" id="skill_networks" name="skills" value="Computer Networks" {% if 'Computer Networks' in sel_skills %}checked{% endif %}>
+      <label for="skill_networks">Computer Networks</label><br>
+
+      <input type="checkbox" id="skill_telecom" name="skills" value="Telecommunications" {% if 'Telecommunications' in sel_skills %}checked{% endif %}>
+      <label for="skill_telecom">Telecommunications</label><br>
+
+      <input type="checkbox" id="skill_biomedical" name="skills" value="Biomedical Instrumentation" {% if 'Biomedical Instrumentation' in sel_skills %}checked{% endif %}>
+      <label for="skill_biomedical">Biomedical Instrumentation</label><br>
+
+      <input type="checkbox" id="skill_ai" name="skills" value="Artificial Intelligence / Machine Learning" {% if 'Artificial Intelligence / Machine Learning' in sel_skills %}checked{% endif %}>
+      <label for="skill_ai">Artificial Intelligence / Machine Learning</label><br>
+
+      <input type="checkbox" id="skill_dsp" name="skills" value="Signal Processing" {% if 'Signal Processing' in sel_skills %}checked{% endif %}>
+      <label for="skill_dsp">Signal Processing</label>
+      {{ err('skills') }}
+    </fieldset>
+
+    <p>
+      <label for="language">Primary Programming Language:</label><br>
+      <input type="text" id="language" name="language" list="languages_list" placeholder="Start typing..."
+             value="{{ data.get('language', '') }}">
+      <datalist id="languages_list">
+        <option value="C">
+        <option value="C++">
+        <option value="Python">
+        <option value="Java">
+        <option value="JavaScript">
+        <option value="TypeScript">
+        <option value="C#">
+        <option value="MATLAB">
+        <option value="Assembly">
+        <option value="SQL">
+      </datalist>
+      {{ err('language') }}
+    </p>
+
+    <p>
+      <label for="software">Engineering Software Used:</label><br>
+      <select id="software" name="software" multiple size="6">
+        <option value="MATLAB" {% if 'MATLAB' in sel_software %}selected{% endif %}>MATLAB</option>
+        <option value="Simulink" {% if 'Simulink' in sel_software %}selected{% endif %}>Simulink</option>
+        <option value="LabVIEW" {% if 'LabVIEW' in sel_software %}selected{% endif %}>LabVIEW</option>
+        <option value="LTspice" {% if 'LTspice' in sel_software %}selected{% endif %}>LTspice</option>
+        <option value="Vivado" {% if 'Vivado' in sel_software %}selected{% endif %}>Vivado</option>
+        <option value="SolidWorks" {% if 'SolidWorks' in sel_software %}selected{% endif %}>SolidWorks</option>
+        <option value="AutoCAD" {% if 'AutoCAD' in sel_software %}selected{% endif %}>AutoCAD</option>
+        <option value="Packet Tracer" {% if 'Packet Tracer' in sel_software %}selected{% endif %}>Packet Tracer</option>
+        <option value="GNS3" {% if 'GNS3' in sel_software %}selected{% endif %}>GNS3</option>
+      </select><br>
+      <small>Hold Ctrl (Windows) or Command (Mac) to select several options.</small>
+      {{ err('software') }}
+    </p>
+  </fieldset>
+
+  <fieldset>
+    <legend>4. Final Year Project</legend>
+
+    <p>
+      <label for="project_title">Proposed Project Title:</label><br>
+      <input type="text" id="project_title" name="project_title" placeholder="Enter a tentative project title"
+             value="{{ data.get('project_title', '') }}">
+      {{ err('project_title') }}
+    </p>
+
+    <p>
+      <label for="project_area">Preferred Project Area:</label><br>
+      <select id="project_area" name="project_area">
+        <option value="">-- Select project area --</option>
+        <optgroup label="Computer Engineering">
+          <option value="Artificial Intelligence" {% if data.get('project_area') == 'Artificial Intelligence' %}selected{% endif %}>Artificial Intelligence</option>
+          <option value="Web Applications" {% if data.get('project_area') == 'Web Applications' %}selected{% endif %}>Web Applications</option>
+          <option value="Cybersecurity" {% if data.get('project_area') == 'Cybersecurity' %}selected{% endif %}>Cybersecurity</option>
+          <option value="Internet of Things" {% if data.get('project_area') == 'Internet of Things' %}selected{% endif %}>Internet of Things</option>
+        </optgroup>
+        <optgroup label="Electrical Engineering">
+          <option value="Power Systems" {% if data.get('project_area') == 'Power Systems' %}selected{% endif %}>Power Systems</option>
+          <option value="Renewable Energy" {% if data.get('project_area') == 'Renewable Energy' %}selected{% endif %}>Renewable Energy</option>
+          <option value="Control Systems" {% if data.get('project_area') == 'Control Systems' %}selected{% endif %}>Control Systems</option>
+        </optgroup>
+        <optgroup label="Biomedical Engineering">
+          <option value="Medical Imaging" {% if data.get('project_area') == 'Medical Imaging' %}selected{% endif %}>Medical Imaging</option>
+          <option value="Biosensors" {% if data.get('project_area') == 'Biosensors' %}selected{% endif %}>Biosensors</option>
+          <option value="Medical Devices" {% if data.get('project_area') == 'Medical Devices' %}selected{% endif %}>Medical Devices</option>
+        </optgroup>
+        <optgroup label="Telecommunications Engineering">
+          <option value="Wireless Communications" {% if data.get('project_area') == 'Wireless Communications' %}selected{% endif %}>Wireless Communications</option>
+          <option value="5G / 6G Networks" {% if data.get('project_area') == '5G / 6G Networks' %}selected{% endif %}>5G / 6G Networks</option>
+        </optgroup>
+      </select>
+      {{ err('project_area') }}
+    </p>
+
+    <p>
+      <label for="description">Brief Project Description:</label><br>
+      <textarea id="description" name="description" rows="5" cols="50"
+                placeholder="Describe the problem, proposed solution, and expected outcome...">{{ data.get('description', '') }}</textarea>
+      {{ err('description') }}
+    </p>
+
+    <p>
+      <label for="team_size">Preferred Team Size:</label><br>
+      <input type="number" id="team_size" name="team_size" min="1" max="4"
+             value="{{ data.get('team_size', '2') }}">
+      {{ err('team_size') }}
+    </p>
+
+    <p>
+      <label for="project_color">Choose a color for your project dashboard:</label><br>
+      <input type="color" id="project_color" name="project_color"
+             value="{{ data.get('project_color', '#3b82f6') }}">
+      {{ err('project_color') }}
+    </p>
+
+    <p>
+      <label for="meeting_date">Preferred Meeting Date:</label><br>
+      <input type="date" id="meeting_date" name="meeting_date"
+             value="{{ data.get('meeting_date', '') }}">
+      {{ err('meeting_date') }}
+    </p>
+
+    <p>
+      <label for="meeting_time">Preferred Meeting Time:</label><br>
+      <input type="time" id="meeting_time" name="meeting_time"
+             value="{{ data.get('meeting_time', '') }}">
+      {{ err('meeting_time') }}
+    </p>
+  </fieldset>
+
+  <p>
+    <input type="checkbox" id="confirmation" name="confirmation" {% if data.get('confirmation') %}checked{% endif %}>
+    <label for="confirmation">I confirm that the information provided is accurate.</label>
+    {{ err('confirmation') }}
+  </p>
+
+  <p>
+    <button type="submit">Submit Profile</button>
+    <button type="reset">Clear Form</button>
+  </p>
+</form>
+{% endblock %}
